@@ -14,12 +14,12 @@ void setup_pwm(uint pin,float pwm_clock_divisor, uint wrap, uint duty_cycle){
 
     pwm_set_wrap(slice,wrap); // Define o wrap do PWM, o valor máximo que o contador pode alcançar
 
-    pwm_set_gpio_level(slice,duty_cycle); // Define o duty cycle do PWM
+    pwm_set_gpio_level(pin,duty_cycle); // Define o duty cycle do PWM
 
     pwm_set_enabled(slice,true); // Habilita o PWM para o slice informado
 }
 
 // Obtém o valor numérico do duty cycle com base em uma porcentagem e valor de wrap informados. A porcentagem varia de 0.0 a 1.0
-uint get_duty_cycle(uint wrap, float percentage){
-    return (uint) percentage * wrap;
+float get_duty_cycle(uint wrap, float percentage){
+    return percentage * wrap;
 }
