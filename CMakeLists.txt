@@ -37,6 +37,7 @@ pico_sdk_init()
 
 add_executable(embarcatech-u4-c7-tarefa1 
     src/main.c
+    src/pwm.c
 )
 
 pico_set_program_name(embarcatech-u4-c7-tarefa1 "embarcatech-u4-c7-tarefa1")
