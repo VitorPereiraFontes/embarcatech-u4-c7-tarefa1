@@ -3,7 +3,7 @@
 #include "pwm.h"
 
 // Para o experimento com o LED, troque a GPIO pela 11, 12 ou 13
-#define SERVO_PIN 12 // Define a GPIO utilizada para conectar-se ao servomotor
+#define SERVO_PIN 22 // Define a GPIO utilizada para conectar-se ao servomotor
 #define PWM_CLOCK_DIVISOR 64.0 // Define a parte inteira e fracionada do divisor para o maior valor possível
 #define PWM_WRAP 39062 // Define o wrap do PWM para que a frequência seja de 50Hz
 #define SERVO_INTERVAL 5000 // Intervalo, em milissegundos, entre as rotações do servomotor
