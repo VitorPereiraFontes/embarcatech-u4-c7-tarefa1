@@ -18,10 +18,50 @@ float duty_step = 0.00025; // Variável que informa o quando será incrementado/
 
 int main()
 {
-    stdio_init_all();
+    stdio_init_all(); // Inicializa as entradas e saídas padrão
 
     while (true) {
-        printf("Hello, world!\n");
-        sleep_ms(1000);
+        if(start){
+            // Configura o PWM para operar num duty cycle de 12%, de modo que o braço do motor se desloque para um ângulo de 180 graus em relação à origem
+            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,0.12)); 
+
+            sleep_ms(SERVO_INTERVAL); // Aguarda 5 segundos
+
+            // Configura o PWM para operar num duty cycle de 7,5%, de modo que o braço do motor se desloque para um ângulo de 90 graus em relação à origem
+            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,0.075));
+        
+            sleep_ms(SERVO_INTERVAL); // Aguarda 5 segundos
+
+            // Configura o PWM para operar num duty cycle de 2,5%, de modo que o braço do motor se desloque para a origem
+            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,0.025));
+
+            sleep_ms(SERVO_INTERVAL); // Aguarda 5 segundos
+
+            start = false; // Muda a variável de controle para falso, indicando que a primeira parte do controle do servomotor terminou
+        }
+
+        if(raise){
+            current_duty = current_duty - duty_step; // Decrementa o duty cycle
+
+            // Atualiza o duty cycle
+            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,current_duty)); // Atualiza a posição do braço do servomotor
+
+            // Verifica se o braço já alcançou a origem, caso positivo, troca o valor da variável de controle
+            if(current_duty < DUTY_CYCLE_ORIGIN){
+                raise = false;
+            }
+        }else{
+            current_duty = current_duty + duty_step; // Incrementa o duty cycle
+
+            // Atualiza o duty cycle
+            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,current_duty));
+
+            // Verifica se o braço já alcançou o ângulo de 180 graus em relação à origem, caso positivo, troca o valor da variável de controle
+            if(current_duty > DUTY_CYCLE_180){
+                raise = true;
+            }
+        }
+
+        sleep_ms(10); // Aguarda 10 milissegundos
     }
 }
