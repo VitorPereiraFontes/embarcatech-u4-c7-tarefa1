@@ -22,8 +22,9 @@ O presente projeto deverá atender aos seguintes requerimentos:
 
 ## Demonstração
 
-Segue o link do vídeo de demonstração do projeto:
+Segue o vídeo de demonstração do projeto:
 
+https://github.com/user-attachments/assets/e907c12b-7fea-45cb-bc5e-789ccc460548
 
 ## Instruções
 
