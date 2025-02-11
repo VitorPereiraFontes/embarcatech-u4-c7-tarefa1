@@ -27,8 +27,8 @@ int main()
 
             sleep_ms(SERVO_INTERVAL); // Aguarda 5 segundos
 
-            // Configura o PWM para operar num duty cycle de 7,5%, de modo que o braço do motor se desloque para um ângulo de 90 graus em relação à origem
-            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,0.075));
+            // Configura o PWM para operar num duty cycle de 7,35%, de modo que o braço do motor se desloque para um ângulo de 90 graus em relação à origem
+            setup_pwm(SERVO_PIN,PWM_CLOCK_DIVISOR,PWM_WRAP,get_duty_cycle(PWM_WRAP,0.0735));
         
             sleep_ms(SERVO_INTERVAL); // Aguarda 5 segundos
 
